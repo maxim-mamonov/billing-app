@@ -1,0 +1,5 @@
+billing:
+    resource: "@BillingBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
