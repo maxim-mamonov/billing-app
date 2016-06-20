@@ -6,12 +6,12 @@ use BillingBundle\Entity\Traits\AmountTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TrainingInstructor
+ * InstructorTraining
  *
- * @ORM\Table(name="training_instructor")
- * @ORM\Entity(repositoryClass="BillingBundle\Repository\TrainingInstructorRepository")
+ * @ORM\Table(name="instructor_training")
+ * @ORM\Entity(repositoryClass="BillingBundle\Repository\InstructorTrainingRepository")
  */
-class TrainingInstructor
+class InstructorTraining
 {
     /**
      * @var int
@@ -64,7 +64,7 @@ class TrainingInstructor
      * Set training
      *
      * @param \BillingBundle\Entity\Training $training
-     * @return TrainingInstructor
+     * @return InstructorTraining
      */
     public function setTraining(Training $training = null)
     {
@@ -87,7 +87,7 @@ class TrainingInstructor
      * Set instructor
      *
      * @param \BillingBundle\Entity\Instructor $instructor
-     * @return TrainingInstructor
+     * @return InstructorTraining
      */
     public function setInstructor(Instructor $instructor = null)
     {

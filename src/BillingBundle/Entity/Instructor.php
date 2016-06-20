@@ -32,9 +32,9 @@ class Instructor
     /**
      * @var array<TrainingInstructor>
      *
-     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\TrainingInstructor", mappedBy="instructor")
+     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\InstructorTraining", mappedBy="instructor")
      */
-    private $trainingInstructors;
+    private $instructorTrainings;
 
     /**
      * Get id
@@ -51,39 +51,39 @@ class Instructor
      */
     public function __construct()
     {
-        $this->trainingInstructors = new ArrayCollection();
+        $this->instructorTrainings = new ArrayCollection();
     }
 
     /**
-     * Add trainingInstructors
+     * Add instructorTrainings
      *
-     * @param \BillingBundle\Entity\TrainingInstructor $trainingInstructors
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
      * @return Instructor
      */
-    public function addTrainingInstructor(TrainingInstructor $trainingInstructors)
+    public function addInstructorTraining(InstructorTraining $instructorTrainings)
     {
-        $this->trainingInstructors[] = $trainingInstructors;
+        $this->instructorTrainings[] = $instructorTrainings;
 
         return $this;
     }
 
     /**
-     * Remove trainingInstructors
+     * Remove instructorTrainings
      *
-     * @param \BillingBundle\Entity\TrainingInstructor $trainingInstructors
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
      */
-    public function removeTrainingInstructor(TrainingInstructor $trainingInstructors)
+    public function removeInstructorTraining(InstructorTraining $instructorTrainings)
     {
-        $this->trainingInstructors->removeElement($trainingInstructors);
+        $this->instructorTrainings->removeElement($instructorTrainings);
     }
 
     /**
-     * Get trainingInstructors
+     * Get instructorTrainings
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTrainingInstructors()
+    public function getInstructorTrainings()
     {
-        return $this->trainingInstructors;
+        return $this->instructorTrainings;
     }
 }

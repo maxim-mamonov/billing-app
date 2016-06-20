@@ -32,11 +32,11 @@ class Training
     private $service;
 
     /**
-     * @var array<TrainingInstructor>
+     * @var array<InstructorTraining>
      *
-     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\TrainingInstructor", mappedBy="training")
+     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\InstructorTraining", mappedBy="training")
      */
-    private $trainingInstructors;
+    private $instructorTrainings;
 
     /**
      * @var array<Client>
@@ -68,6 +68,15 @@ class Training
     private $description;
 
     use LifecycleDateTimeTrait;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->instructorTrainings = new ArrayCollection();
+        $this->clients = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -149,15 +158,6 @@ class Training
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->trainingInstructors = new ArrayCollection();
-        $this->clients = new ArrayCollection();
-    }
-
-    /**
      * Set service
      *
      * @param \BillingBundle\Entity\Service $service
@@ -180,37 +180,38 @@ class Training
         return $this->service;
     }
 
+
     /**
-     * Add trainingInstructors
+     * Add instructorTrainings
      *
-     * @param \BillingBundle\Entity\TrainingInstructor $trainingInstructors
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
      * @return Training
      */
-    public function addTrainingInstructor(TrainingInstructor $trainingInstructors)
+    public function addInstructorTraining(InstructorTraining $instructorTrainings)
     {
-        $this->trainingInstructors[] = $trainingInstructors;
+        $this->instructorTrainings[] = $instructorTrainings;
 
         return $this;
     }
 
     /**
-     * Remove trainingInstructors
+     * Remove instructorTrainings
      *
-     * @param \BillingBundle\Entity\TrainingInstructor $trainingInstructors
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
      */
-    public function removeTrainingInstructor(TrainingInstructor $trainingInstructors)
+    public function removeInstructorTraining(InstructorTraining $instructorTrainings)
     {
-        $this->trainingInstructors->removeElement($trainingInstructors);
+        $this->instructorTrainings->removeElement($instructorTrainings);
     }
 
     /**
-     * Get trainingInstructors
+     * Get instructorTrainings
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTrainingInstructors()
+    public function getInstructorTrainings()
     {
-        return $this->trainingInstructors;
+        return $this->instructorTrainings;
     }
 
     /**
