@@ -1,6 +1,7 @@
 admin.menu.group.item.clients: Клиенты 
 Client List: Список клиентов
 Client Create: Создание клиента
+Client Delete: Удаление клиента
 Id: ID
 First Name: Имя
 Last Name: Фамилия
@@ -9,3 +10,6 @@ Gender: Пол
 Birthday: День рождения
 Created At: Дата создания
 Updated At: Дата обновления
+Action: Действия
+date_range_start: с
+date_range_end: до

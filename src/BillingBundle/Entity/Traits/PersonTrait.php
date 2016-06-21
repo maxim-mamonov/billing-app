@@ -30,7 +30,7 @@ trait PersonTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=10)
+     * @ORM\Column(name="gender", type="enum.gender", nullable=true)
      */
     protected $gender;
 
@@ -154,5 +154,21 @@ trait PersonTrait
         $this->birthday = $birthday;
 
         return $this;
+    }
+
+    public function getFullName()
+    {
+        $result = '';
+        if ($this->getLastName()) {
+            $result .= $this->getLastName() . ' ';
+        }
+        if ($this->getFirstName()) {
+            $result .= $this->getFirstName() . ' ';
+        }
+        if ($this->getPatronymic()) {
+            $result .= $this->getPatronymic();
+        }
+        $result = trim($result);
+        return $result;
     }
 }

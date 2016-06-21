@@ -21,10 +21,15 @@ class ClientAdmin extends AbstractAdmin
             ->add('lastName')
             ->add('patronymic')
             ->add('gender')
-            ->add('birthday')
-            ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('birthday', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
+            ->add('createdAt', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
+            ->add('updatedAt', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ));
     }
 
     /**
@@ -47,8 +52,7 @@ class ClientAdmin extends AbstractAdmin
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -57,15 +61,11 @@ class ClientAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
             ->add('firstName')
             ->add('lastName')
             ->add('patronymic')
             ->add('gender')
-            ->add('birthday')
-            ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType');
     }
 
     /**
@@ -81,7 +81,6 @@ class ClientAdmin extends AbstractAdmin
             ->add('gender')
             ->add('birthday')
             ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('updatedAt');
     }
 }

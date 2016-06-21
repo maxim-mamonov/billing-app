@@ -1,0 +1,9 @@
+sonata_intl:
+    timezone:
+        default: Europe/Kiev
+        locales:
+            fr:     Europe/Paris
+            en_UK:  Europe/London
+            ru:     Europe/Kiev
+        detectors:
+            - sonata.intl.timezone_detector.locale

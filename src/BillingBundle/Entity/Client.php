@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="BillingBundle\Repository\ClientRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Client
 {
@@ -126,5 +127,15 @@ class Client
     public function getTrainingGroups()
     {
         return $this->trainingGroups;
+    }
+
+    /**
+     * Get full client name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 }
