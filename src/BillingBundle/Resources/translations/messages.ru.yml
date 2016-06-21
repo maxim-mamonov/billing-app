@@ -1,0 +1,11 @@
+admin.menu.group.item.clients: Клиенты 
+Client List: Список клиентов
+Client Create: Создание клиента
+Id: ID
+First Name: Имя
+Last Name: Фамилия
+Patronymic: Отчество
+Gender: Пол
+Birthday: День рождения
+Created At: Дата создания
+Updated At: Дата обновления

@@ -1,0 +1,10 @@
+services:
+    billing.admin.client:
+        class: BillingBundle\Admin\ClientAdmin
+        arguments: [~, BillingBundle\Entity\Client, SonataAdminBundle:CRUD]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.clients"
+              label_translator_strategy: 'sonata.admin.label.strategy.native'

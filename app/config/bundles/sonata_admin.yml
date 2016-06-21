@@ -1,0 +1,13 @@
+sonata_admin:
+    title: Murzilka
+    title_logo: apple-touch-icon.png
+    options:
+        title_mode: single_image
+    templates:
+        layout: 'BillingBundle::standard_layout.html.twig'
+    dashboard:
+        groups:
+            admin.group.client:
+                label_catalogue: BillingBundle
+                items:
+                    - billing.admin.client

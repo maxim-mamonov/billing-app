@@ -46,7 +46,7 @@ class TrainingGroup
     /**
      * @var array<Client>
      *
-     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\Client", mappedBy="clients")
+     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\Client", mappedBy="trainingGroups")
      */
     private $clients;
 
