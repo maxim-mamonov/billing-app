@@ -2,6 +2,7 @@
 
 namespace BillingBundle\Entity;
 
+use BillingBundle\Entity\Traits\ContactTrait;
 use BillingBundle\Entity\Traits\LifecycleDateTimeTrait;
 use BillingBundle\Entity\Traits\PersonTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,15 +27,8 @@ class Client
     private $id;
 
     use PersonTrait;
+    use ContactTrait;
     use LifecycleDateTimeTrait;
-
-    /**
-     * @var array<FamilyMember>
-     *
-     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\FamilyMember", inversedBy="clients")
-     * @ORM\JoinTable(name="client_family_member")
-     */
-    private $familyMembers;
 
     /**
      * @var array<TrainingGroup>
@@ -43,6 +37,17 @@ class Client
      * @ORM\JoinTable(name="client_training_group")
      */
     private $trainingGroups;
+
+    /**
+     * @var array<ClientPlan>
+     *
+     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\ClientPlan",
+     *     mappedBy="client",
+     *     cascade={"all"},
+     *     orphanRemoval=true
+     * )
+     */
+    private $clientPlans;
 
     /**
      * Get id
@@ -59,41 +64,8 @@ class Client
      */
     public function __construct()
     {
-        $this->familyMembers = new ArrayCollection();
         $this->trainingGroups = new ArrayCollection();
-    }
-
-    /**
-     * Add familyMembers
-     *
-     * @param \BillingBundle\Entity\FamilyMember $familyMembers
-     * @return Client
-     */
-    public function addFamilyMember(FamilyMember $familyMembers)
-    {
-        $this->familyMembers[] = $familyMembers;
-
-        return $this;
-    }
-
-    /**
-     * Remove familyMembers
-     *
-     * @param \BillingBundle\Entity\FamilyMember $familyMembers
-     */
-    public function removeFamilyMember(FamilyMember $familyMembers)
-    {
-        $this->familyMembers->removeElement($familyMembers);
-    }
-
-    /**
-     * Get familyMembers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFamilyMembers()
-    {
-        return $this->familyMembers;
+        $this->clientPlans = new ArrayCollection();
     }
 
     /**
@@ -137,5 +109,41 @@ class Client
     public function __toString()
     {
         return $this->getFullName();
+    }
+
+    /**
+     * Add clientPlans
+     *
+     * @param \BillingBundle\Entity\ClientPlan $clientPlans
+     * @return Client
+     */
+    public function addClientPlan(ClientPlan $clientPlans)
+    {
+        if ($clientPlans) {
+            $clientPlans->setClient($this);
+        }
+        $this->clientPlans[] = $clientPlans;
+
+        return $this;
+    }
+
+    /**
+     * Remove clientPlans
+     *
+     * @param \BillingBundle\Entity\ClientPlan $clientPlans
+     */
+    public function removeClientPlan(ClientPlan $clientPlans)
+    {
+        $this->clientPlans->removeElement($clientPlans);
+    }
+
+    /**
+     * Get clientPlans
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClientPlans()
+    {
+        return $this->clientPlans;
     }
 }

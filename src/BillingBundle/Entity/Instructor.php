@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="instructor")
  * @ORM\Entity(repositoryClass="BillingBundle\Repository\InstructorRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Instructor
 {
@@ -25,8 +26,8 @@ class Instructor
      */
     private $id;
 
-    use ContactTrait;
     use PersonTrait;
+    use ContactTrait;
     use LifecycleDateTimeTrait;
 
     /**
@@ -85,5 +86,15 @@ class Instructor
     public function getInstructorTrainings()
     {
         return $this->instructorTrainings;
+    }
+
+    /**
+     * Get full client name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 }

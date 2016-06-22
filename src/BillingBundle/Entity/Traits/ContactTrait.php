@@ -28,6 +28,13 @@ trait ContactTrait
     private $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="contact_details", type="text", nullable=true)
+     */
+    private $contactDetails;
+
+    /**
      * Get phone
      *
      * @return string
@@ -92,6 +99,29 @@ trait ContactTrait
     public function setAddress($address)
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get contactDetails
+     *
+     * @return string
+     */
+    public function getContactDetails()
+    {
+        return $this->contactDetails;
+    }
+
+    /**
+     * Set contactDetails
+     *
+     * @param string $contactDetails
+     * @return $this
+     */
+    public function setContactDetails($contactDetails)
+    {
+        $this->contactDetails = $contactDetails;
 
         return $this;
     }

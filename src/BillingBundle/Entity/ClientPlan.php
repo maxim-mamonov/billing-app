@@ -2,7 +2,7 @@
 
 namespace BillingBundle\Entity;
 
-use BillingBundle\Entity\Traits\AmountTrait;
+use BillingBundle\Entity\Traits\CostTrait;
 use BillingBundle\Entity\Traits\LifecycleDateTimeTrait;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="client_plan")
  * @ORM\Entity(repositoryClass="BillingBundle\Repository\ClientPlanRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class ClientPlan
 {
@@ -26,7 +27,7 @@ class ClientPlan
     /**
      * @var Client
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Client", inversedBy="clientPlans", cascade={"persist"})
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $client;
@@ -39,7 +40,7 @@ class ClientPlan
      */
     private $plan;
 
-    use AmountTrait;
+    use CostTrait;
     use LifecycleDateTimeTrait;
 
     /**
@@ -96,5 +97,16 @@ class ClientPlan
     public function getPlan()
     {
         return $this->plan;
+    }
+
+    /**
+     * Update properties
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateProperties()
+    {
+        $this->setCost($this->getPlan()->getCost());
     }
 }

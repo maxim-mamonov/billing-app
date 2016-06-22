@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ClientAdmin extends AbstractAdmin
+class InstructorAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -37,6 +37,7 @@ class ClientAdmin extends AbstractAdmin
                 'field_type' => 'sonata_type_date_range_picker',
             ))
             ->add('phone')
+            ->add('contactDetails')
             ->add('createdAt', 'doctrine_orm_date_range', array(
                 'field_type' => 'sonata_type_date_range_picker',
             ))
@@ -76,39 +77,21 @@ class ClientAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->tab('client.form.tab.general')
-                ->with('client.form.tab.general')
-                ->add('firstName')
-                ->add('lastName')
-                ->add('patronymic')
-                ->add('gender', 'choice', array(
-                    'choices' => array(
-                        EnumGenderType::GENDER_MALE => 'gender.male',
-                        EnumGenderType::GENDER_FEMALE => 'gender.female',
-                    )
-                ))
-                ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType')
-                ->add('phone')
-                ->add('email')
-                ->add('address')
-                ->add('contactDetails')
-                ->end()
-            ->end()
-            ->tab('client.form.tab.plans')
-            ->with('client.form.tab.plans')
-                ->add('clientPlans', 'sonata_type_collection', array(
-                    'required' => false,
-                    'by_reference' => false,
-                    'cascade_validation' => true,
-                    'mapped' => true,
-                    'label' => false,
-                ), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'createdAt',
-                ))
-                ->end()
-        ;
+            ->add('id')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('patronymic')
+            ->add('gender', 'choice', array(
+                'choices' => array(
+                    EnumGenderType::GENDER_MALE => 'gender.male',
+                    EnumGenderType::GENDER_FEMALE => 'gender.female',
+                )
+            ))
+            ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType')
+            ->add('phone')
+            ->add('email')
+            ->add('address')
+            ->add('contactDetails');
     }
 
     /**

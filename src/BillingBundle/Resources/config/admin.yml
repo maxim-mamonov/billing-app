@@ -7,4 +7,36 @@ services:
               manager_type: orm
               group: "admin.menu.group.admin"
               label: "admin.menu.group.item.clients"
-              label_translator_strategy: 'sonata.admin.label.strategy.native'
+
+    billing.admin.instructor:
+        class: BillingBundle\Admin\InstructorAdmin
+        arguments: [~, BillingBundle\Entity\Instructor, SonataAdminBundle:CRUD]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.instructors"
+
+    billing.admin.service:
+        class: BillingBundle\Admin\ServiceAdmin
+        arguments: [~, BillingBundle\Entity\Service, SonataAdminBundle:CRUD]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.services"
+
+    billing.admin.plan:
+        class: BillingBundle\Admin\PlanAdmin
+        arguments: [~, BillingBundle\Entity\Plan, SonataAdminBundle:CRUD]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.plans"
+
+    billing.admin.client_plan:
+        class: BillingBundle\Admin\ClientPlanAdmin
+        arguments: [~, BillingBundle\Entity\ClientPlan, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: ClientPlan }

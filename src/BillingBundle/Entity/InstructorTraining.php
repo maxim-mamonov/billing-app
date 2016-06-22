@@ -2,7 +2,7 @@
 
 namespace BillingBundle\Entity;
 
-use BillingBundle\Entity\Traits\AmountTrait;
+use BillingBundle\Entity\Traits\CostTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,7 +22,7 @@ class InstructorTraining
      */
     private $id;
 
-    use AmountTrait;
+    use CostTrait;
 
     /**
      * @var Training

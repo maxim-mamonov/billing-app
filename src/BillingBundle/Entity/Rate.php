@@ -2,7 +2,7 @@
 
 namespace BillingBundle\Entity;
 
-use BillingBundle\Entity\Traits\AmountTrait;
+use BillingBundle\Entity\Traits\CostTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,7 +38,7 @@ class Rate
      */
     private $service;
 
-    use AmountTrait;
+    use CostTrait;
 
     /**
      * Get id

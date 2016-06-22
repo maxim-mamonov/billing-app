@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="service")
  * @ORM\Entity(repositoryClass="BillingBundle\Repository\ServiceRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Service
 {
@@ -34,5 +35,15 @@ class Service
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

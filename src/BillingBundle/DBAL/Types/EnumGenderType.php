@@ -5,8 +5,8 @@ namespace BillingBundle\DBAL\Types;
 class EnumGenderType extends EnumType
 {
     const
-        GENDER_MALE = 'male',
-        GENDER_FEMALE = 'female';
+        GENDER_MALE = 'gender.male',
+        GENDER_FEMALE = 'gender.female';
 
     protected $name = 'enum.gender';
     protected $values = array(

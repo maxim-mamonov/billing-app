@@ -1,7 +1,19 @@
 admin.menu.group.item.clients: Клиенты 
+admin.menu.group.item.instructors: Преподаватели
+admin.menu.group.item.services: Услуги
+admin.menu.group.item.plans: Прейскурант
 Client List: Список клиентов
+Instructor List: Список преподавателей
+Service List: Список услуг
+Plan List: Прейскурант
+Instructor Create: Создание преподавателя
 Client Create: Создание клиента
+Service Create: Создание услуги
+Plan Create: Создание ценника
+Instructor Delete: Удаление преподавателя
 Client Delete: Удаление клиента
+Service Delete: Удаление услуги
+Plan Delete: Создание ценника
 Id: ID
 First Name: Имя
 Last Name: Фамилия
@@ -13,3 +25,17 @@ Updated At: Дата обновления
 Action: Действия
 date_range_start: с
 date_range_end: до
+Phone: Телефон
+Email: Email
+Address: Адресс
+Contact Details: Контактные данные
+Description: Описание
+Archived: Архивное
+Name: Название
+Trainings: Количество занятий
+Cost: Стоимость
+Service: Услуга
+gender.male: мужской
+gender.female: женский
+client.form.tab.general: Основная информация
+client.form.tab.plans: Купленые услуги
