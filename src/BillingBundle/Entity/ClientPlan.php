@@ -27,16 +27,30 @@ class ClientPlan
     /**
      * @var Client
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Client", inversedBy="clientPlans", cascade={"persist"})
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Client",
+     *     inversedBy="clientPlans",
+     *     cascade={"persist"}
+     * )
+     * @ORM\JoinColumn(
+     *     name="client_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $client;
 
     /**
      * @var Plan
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Plan")
-     * @ORM\JoinColumn(name="plan_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Plan"
+     * )
+     * @ORM\JoinColumn(
+     *     name="plan_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $plan;
 
@@ -107,6 +121,16 @@ class ClientPlan
      */
     public function updateProperties()
     {
-        $this->setCost($this->getPlan()->getCost());
+        //$this->setCost($this->getPlan()->getCost());
+    }
+
+    /**
+     * Get full client name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getPlan()->__toString();
     }
 }

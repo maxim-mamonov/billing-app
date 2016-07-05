@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ServiceAdmin extends AbstractAdmin
+class TrainingGroupAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,8 +17,12 @@ class ServiceAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
+            ->add('instructor')
+            ->add('service')
             ->add('name')
-            ->add('archived');
+            ->add('description')
+            ->add('archived')
+            ->add('createdAt');
     }
 
     /**
@@ -30,11 +34,12 @@ class ServiceAdmin extends AbstractAdmin
 
         $listMapper
             ->add('id')
+            ->add('instructor')
+            ->add('service')
             ->add('name')
+            ->add('clients')
             ->add('description')
             ->add('archived')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -50,8 +55,15 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('service')
+            ->add('instructor')
             ->add('name')
             ->add('description')
+            ->add('clients', 'sonata_type_model', array(
+                'expanded' => false,
+                'by_reference' => false,
+                'multiple' => true
+            ))
             ->add('archived');
     }
 
@@ -62,10 +74,12 @@ class ServiceAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
+            ->add('service')
+            ->add('instructor')
             ->add('name')
             ->add('description')
+            ->add('clients')
             ->add('archived')
-            ->add('createdAt')
-            ->add('updatedAt');
+            ->add('createdAt');
     }
 }

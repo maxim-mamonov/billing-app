@@ -51,6 +51,8 @@ class InstructorAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        unset($this->listModes['mosaic']);
+
         $listMapper
             ->add('id')
             ->add('firstName')
@@ -77,21 +79,24 @@ class InstructorAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('patronymic')
-            ->add('gender', 'choice', array(
-                'choices' => array(
-                    EnumGenderType::GENDER_MALE => 'gender.male',
-                    EnumGenderType::GENDER_FEMALE => 'gender.female',
-                )
-            ))
-            ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType')
-            ->add('phone')
-            ->add('email')
-            ->add('address')
-            ->add('contactDetails');
+            ->with('instructor.form.tab.personal', array('class' => 'col-md-6'))
+                ->add('firstName')
+                ->add('lastName')
+                ->add('patronymic')
+                ->add('gender', 'choice', array(
+                    'choices' => array(
+                        EnumGenderType::GENDER_MALE => 'gender.male',
+                        EnumGenderType::GENDER_FEMALE => 'gender.female',
+                    )
+                ))
+                ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType')
+            ->end()
+            ->with('instructor.form.tab.contact', array('class' => 'col-md-6'))
+                ->add('phone')
+                ->add('email')
+                ->add('address')
+                ->add('contactDetails')
+            ->end();
     }
 
     /**

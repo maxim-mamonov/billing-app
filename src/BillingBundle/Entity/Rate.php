@@ -25,16 +25,28 @@ class Rate
     /**
      * @var Instructor
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Instructor")
-     * @ORM\JoinColumn(name="instructor_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Instructor"
+     * )
+     * @ORM\JoinColumn(
+     *     name="instructor_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $instructor;
 
     /**
      * @var Service
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Service")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Service"
+     * )
+     * @ORM\JoinColumn(
+     *     name="service_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $service;
 

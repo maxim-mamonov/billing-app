@@ -31,8 +31,15 @@ class Plan
     /**
      * @var Service
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Service")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Service"
+     * )
+     * @ORM\JoinColumn(
+     *     name="service_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE",
+     *     nullable=false
+     * )
      * @Assert\NotBlank(message="Service is required")
      */
     private $service;

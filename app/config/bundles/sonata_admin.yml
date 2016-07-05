@@ -17,3 +17,4 @@ sonata_admin:
                 items:
                     - billing.admin.instructor
                     - billing.admin.service
+                    - billing.admin.training_group

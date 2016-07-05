@@ -21,8 +21,7 @@ class PlanAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('archived')
-            ->add('cost')
-        ;
+            ->add('cost');
     }
 
     /**
@@ -30,6 +29,8 @@ class PlanAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        unset($this->listModes['mosaic']);
+
         $listMapper
             ->add('id')
             ->add('trainings')
@@ -45,8 +46,7 @@ class PlanAdmin extends AbstractAdmin
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -60,8 +60,7 @@ class PlanAdmin extends AbstractAdmin
             ->add('description')
             ->add('cost')
             ->add('trainings')
-            ->add('archived')
-        ;
+            ->add('archived');
     }
 
     /**
@@ -77,7 +76,6 @@ class PlanAdmin extends AbstractAdmin
             ->add('archived')
             ->add('cost')
             ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('updatedAt');
     }
 }

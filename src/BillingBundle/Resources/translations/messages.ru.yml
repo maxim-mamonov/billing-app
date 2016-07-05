@@ -2,6 +2,8 @@ admin.menu.group.item.clients: Клиенты
 admin.menu.group.item.instructors: Преподаватели
 admin.menu.group.item.services: Услуги
 admin.menu.group.item.plans: Прейскурант
+admin.menu.group.item.client.plans: Купленые услуги
+admin.menu.group.item.training.groups: Группы
 Client List: Список клиентов
 Instructor List: Список преподавателей
 Service List: Список услуг
@@ -38,4 +40,16 @@ Service: Услуга
 gender.male: мужской
 gender.female: женский
 client.form.tab.general: Основная информация
+client.form.tab.personal: Персональная информация
+client.form.tab.contact: Контакты
 client.form.tab.plans: Купленые услуги
+Client Plan List: Список купленых услуг
+Client Plan: Купленыя услуга
+Plan: Услуга
+Training Group: Группа
+Training Group List: Список групп
+Training Group Create: Создание группы
+Instructor: Преподаватель
+Clients: Клиенты
+instructor.form.tab.personal: Персональная информация
+instructor.form.tab.contact: Контакты

@@ -26,23 +26,36 @@ class Training
     /**
      * @var Service
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Service")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Service"
+     * )
+     * @ORM\JoinColumn(
+     *     name="service_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $service;
 
     /**
-     * @var array<InstructorTraining>
+     * @var InstructorTraining[]
      *
-     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\InstructorTraining", mappedBy="training")
+     * @ORM\OneToMany(
+     *     targetEntity="BillingBundle\Entity\InstructorTraining",
+     *     mappedBy="training"
+     * )
      */
     private $instructorTrainings;
 
     /**
      * @var array<Client>
      *
-     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\Client")
-     * @ORM\JoinTable(name="client_training")
+     * @ORM\ManyToMany(
+     *     targetEntity="BillingBundle\Entity\Client"
+     * )
+     * @ORM\JoinTable(
+     *     name="client_training"
+     * )
      */
     private $clients;
 
@@ -184,12 +197,12 @@ class Training
     /**
      * Add instructorTrainings
      *
-     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTraining
      * @return Training
      */
-    public function addInstructorTraining(InstructorTraining $instructorTrainings)
+    public function addInstructorTraining(InstructorTraining $instructorTraining)
     {
-        $this->instructorTrainings[] = $instructorTrainings;
+        $this->instructorTrainings[] = $instructorTraining;
 
         return $this;
     }
@@ -197,17 +210,17 @@ class Training
     /**
      * Remove instructorTrainings
      *
-     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTraining
      */
-    public function removeInstructorTraining(InstructorTraining $instructorTrainings)
+    public function removeInstructorTraining(InstructorTraining $instructorTraining)
     {
-        $this->instructorTrainings->removeElement($instructorTrainings);
+        $this->instructorTrainings->removeElement($instructorTraining);
     }
 
     /**
      * Get instructorTrainings
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return InstructorTraining[]
      */
     public function getInstructorTrainings()
     {
@@ -217,12 +230,12 @@ class Training
     /**
      * Add clients
      *
-     * @param \BillingBundle\Entity\Client $clients
+     * @param \BillingBundle\Entity\Client $client
      * @return Training
      */
-    public function addClient(Client $clients)
+    public function addClient(Client $client)
     {
-        $this->clients[] = $clients;
+        $this->clients[] = $client;
 
         return $this;
     }
@@ -230,17 +243,17 @@ class Training
     /**
      * Remove clients
      *
-     * @param \BillingBundle\Entity\Client $clients
+     * @param \BillingBundle\Entity\Client $client
      */
-    public function removeClient(Client $clients)
+    public function removeClient(Client $client)
     {
-        $this->clients->removeElement($clients);
+        $this->clients->removeElement($client);
     }
 
     /**
      * Get clients
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Client[]
      */
     public function getClients()
     {

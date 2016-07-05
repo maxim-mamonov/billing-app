@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="training_group")
  * @ORM\Entity(repositoryClass="BillingBundle\Repository\TrainingGroupRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class TrainingGroup
 {
@@ -30,23 +31,40 @@ class TrainingGroup
     /**
      * @var Instructor
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Instructor")
-     * @ORM\JoinColumn(name="instructor_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Instructor"
+     * )
+     * @ORM\JoinColumn(
+     *     name="instructor_id",
+     *     referencedColumnName="id",
+     *     nullable=false,
+     *     onDelete="CASCADE"
+     * )
      */
     private $instructor;
 
     /**
      * @var Service
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Service")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Service"
+     * )
+     * @ORM\JoinColumn(
+     *     name="service_id",
+     *     referencedColumnName="id",
+     *     nullable=false,
+     *     onDelete="CASCADE"
+     * )
      */
     private $service;
 
     /**
-     * @var array<Client>
+     * @var Client[]
      *
-     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\Client", mappedBy="trainingGroups")
+     * @ORM\ManyToMany(
+     *     targetEntity="BillingBundle\Entity\Client",
+     *     mappedBy="trainingGroups"
+     * )
      */
     private $clients;
 
@@ -94,12 +112,15 @@ class TrainingGroup
     /**
      * Add clients
      *
-     * @param \BillingBundle\Entity\Client $clients
+     * @param \BillingBundle\Entity\Client $client
      * @return TrainingGroup
      */
-    public function addClient(Client $clients)
+    public function addClient(Client $client)
     {
-        $this->clients[] = $clients;
+        if ($client) {
+            $client->addTrainingGroup($this);
+        }
+        $this->clients[] = $client;
 
         return $this;
     }
@@ -107,21 +128,36 @@ class TrainingGroup
     /**
      * Remove clients
      *
-     * @param \BillingBundle\Entity\Client $clients
+     * @param \BillingBundle\Entity\Client $client
      */
-    public function removeClient(Client $clients)
+    public function removeClient(Client $client)
     {
-        $this->clients->removeElement($clients);
+        if ($client) {
+            $client->removeTrainingGroup($this);
+        }
+        $this->clients->removeElement($client);
     }
 
     /**
      * Get clients
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Client[]
      */
     public function getClients()
     {
         return $this->clients;
+    }
+
+    /**
+     * Set clients
+     * @param \BillingBundle\Entity\Client[] $clients
+     *
+     * @return TrainingGroup
+     */
+    public function setClients($clients)
+    {
+        $this->clients = $clients;
+        return $this;
     }
 
     /**
@@ -145,5 +181,15 @@ class TrainingGroup
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

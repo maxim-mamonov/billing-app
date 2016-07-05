@@ -31,9 +31,12 @@ class Instructor
     use LifecycleDateTimeTrait;
 
     /**
-     * @var array<TrainingInstructor>
+     * @var InstructorTraining[]
      *
-     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\InstructorTraining", mappedBy="instructor")
+     * @ORM\OneToMany(
+     *     targetEntity="BillingBundle\Entity\InstructorTraining",
+     *     mappedBy="instructor"
+     * )
      */
     private $instructorTrainings;
 
@@ -58,12 +61,12 @@ class Instructor
     /**
      * Add instructorTrainings
      *
-     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTraining
      * @return Instructor
      */
-    public function addInstructorTraining(InstructorTraining $instructorTrainings)
+    public function addInstructorTraining(InstructorTraining $instructorTraining)
     {
-        $this->instructorTrainings[] = $instructorTrainings;
+        $this->instructorTrainings[] = $instructorTraining;
 
         return $this;
     }
@@ -71,17 +74,17 @@ class Instructor
     /**
      * Remove instructorTrainings
      *
-     * @param \BillingBundle\Entity\InstructorTraining $instructorTrainings
+     * @param \BillingBundle\Entity\InstructorTraining $instructorTraining
      */
-    public function removeInstructorTraining(InstructorTraining $instructorTrainings)
+    public function removeInstructorTraining(InstructorTraining $instructorTraining)
     {
-        $this->instructorTrainings->removeElement($instructorTrainings);
+        $this->instructorTrainings->removeElement($instructorTraining);
     }
 
     /**
      * Get instructorTrainings
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return InstructorTraining[]
      */
     public function getInstructorTrainings()
     {

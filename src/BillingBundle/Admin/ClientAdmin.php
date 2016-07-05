@@ -3,7 +3,9 @@
 namespace BillingBundle\Admin;
 
 use BillingBundle\DBAL\Types\EnumGenderType;
+use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -50,6 +52,8 @@ class ClientAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        unset($this->listModes['mosaic']);
+
         $listMapper
             ->add('id')
             ->add('firstName')
@@ -76,8 +80,7 @@ class ClientAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->tab('client.form.tab.general')
-                ->with('client.form.tab.general')
+            ->with('client.form.tab.personal', array('class' => 'col-md-6'))
                 ->add('firstName')
                 ->add('lastName')
                 ->add('patronymic')
@@ -88,27 +91,13 @@ class ClientAdmin extends AbstractAdmin
                     )
                 ))
                 ->add('birthday', 'Sonata\CoreBundle\Form\Type\DatePickerType')
+            ->end()
+            ->with('client.form.tab.contact', array('class' => 'col-md-6'))
                 ->add('phone')
                 ->add('email')
                 ->add('address')
                 ->add('contactDetails')
-                ->end()
-            ->end()
-            ->tab('client.form.tab.plans')
-            ->with('client.form.tab.plans')
-                ->add('clientPlans', 'sonata_type_collection', array(
-                    'required' => false,
-                    'by_reference' => false,
-                    'cascade_validation' => true,
-                    'mapped' => true,
-                    'label' => false,
-                ), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'createdAt',
-                ))
-                ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -129,5 +118,25 @@ class ClientAdmin extends AbstractAdmin
             ->add('contactDetails')
             ->add('createdAt')
             ->add('updatedAt');
+    }
+
+    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit', 'show'))) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+        $id = $admin->getRequest()->get('id');
+
+        $menu->addChild(
+            'client.form.tab.general',
+            $admin->generateMenuUrl('show', array('id' => $id))
+        );
+
+        $menu->addChild(
+            'client.form.tab.plans',
+            $admin->generateMenuUrl('billing.admin.client_plan.list', array('id' => $id))
+        );
     }
 }

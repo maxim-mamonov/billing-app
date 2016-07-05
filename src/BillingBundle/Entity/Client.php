@@ -31,17 +31,23 @@ class Client
     use LifecycleDateTimeTrait;
 
     /**
-     * @var array<TrainingGroup>
+     * @var TrainingGroup[]
      *
-     * @ORM\ManyToMany(targetEntity="BillingBundle\Entity\TrainingGroup", inversedBy="clients")
-     * @ORM\JoinTable(name="client_training_group")
+     * @ORM\ManyToMany(
+     *     targetEntity="BillingBundle\Entity\TrainingGroup",
+     *     inversedBy="clients"
+     * )
+     * @ORM\JoinTable(
+     *     name="client_training_group"
+     * )
      */
     private $trainingGroups;
 
     /**
-     * @var array<ClientPlan>
+     * @var ClientPlan[]
      *
-     * @ORM\OneToMany(targetEntity="BillingBundle\Entity\ClientPlan",
+     * @ORM\OneToMany(
+     *     targetEntity="BillingBundle\Entity\ClientPlan",
      *     mappedBy="client",
      *     cascade={"all"},
      *     orphanRemoval=true
@@ -94,7 +100,7 @@ class Client
     /**
      * Get trainingGroups
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return TrainingGroup[]
      */
     public function getTrainingGroups()
     {
@@ -140,7 +146,7 @@ class Client
     /**
      * Get clientPlans
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ClientPlan[]
      */
     public function getClientPlans()
     {

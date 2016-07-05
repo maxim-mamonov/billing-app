@@ -7,6 +7,8 @@ services:
               manager_type: orm
               group: "admin.menu.group.admin"
               label: "admin.menu.group.item.clients"
+        calls:
+            - [ addChild, [ '@billing.admin.client_plan' ] ]
 
     billing.admin.instructor:
         class: BillingBundle\Admin\InstructorAdmin
@@ -39,4 +41,16 @@ services:
         class: BillingBundle\Admin\ClientPlanAdmin
         arguments: [~, BillingBundle\Entity\ClientPlan, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: ClientPlan }
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.client.plans"
+
+    billing.admin.training_group:
+        class: BillingBundle\Admin\TrainingGroupAdmin
+        arguments: [~, BillingBundle\Entity\TrainingGroup, SonataAdminBundle:CRUD]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "admin.menu.group.admin"
+              label: "admin.menu.group.item.training.groups"

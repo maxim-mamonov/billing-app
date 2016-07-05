@@ -27,16 +27,30 @@ class InstructorTraining
     /**
      * @var Training
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Training", inversedBy="trainingInstructors")
-     * @ORM\JoinColumn(name="training_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Training",
+     *     inversedBy="instructorTrainings"
+     * )
+     * @ORM\JoinColumn(
+     *     name="training_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $training;
 
     /**
      * @var Instructor
      *
-     * @ORM\ManyToOne(targetEntity="BillingBundle\Entity\Instructor", inversedBy="trainingInstructors")
-     * @ORM\JoinColumn(name="instructor_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(
+     *     targetEntity="BillingBundle\Entity\Instructor",
+     *     inversedBy="instructorTrainings"
+     * )
+     * @ORM\JoinColumn(
+     *     name="instructor_id",
+     *     referencedColumnName="id",
+     *     onDelete="CASCADE"
+     * )
      */
     private $instructor;
 

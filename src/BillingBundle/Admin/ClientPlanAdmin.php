@@ -10,6 +10,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class ClientPlanAdmin extends AbstractAdmin
 {
+    public function configure()
+    {
+        $this->parentAssociationMapping = 'client';
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -19,8 +24,7 @@ class ClientPlanAdmin extends AbstractAdmin
             ->add('id')
             ->add('cost')
             ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('updatedAt');
     }
 
     /**
@@ -28,8 +32,10 @@ class ClientPlanAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        unset($this->listModes['mosaic']);
+
         $listMapper
-            ->add('id')
+            ->add('plan')
             ->add('cost')
             ->add('createdAt')
             ->add('updatedAt')
@@ -39,8 +45,7 @@ class ClientPlanAdmin extends AbstractAdmin
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -50,7 +55,7 @@ class ClientPlanAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('plan')
-        ;
+            ->add('cost');
     }
 
     /**
@@ -59,10 +64,9 @@ class ClientPlanAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
+            ->add('plan')
             ->add('cost')
             ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('updatedAt');
     }
 }
