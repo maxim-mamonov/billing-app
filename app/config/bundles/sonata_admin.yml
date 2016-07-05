@@ -12,6 +12,7 @@ sonata_admin:
                 items:
                     - billing.admin.client
                     - billing.admin.plan
+                    - billing.admin.training
             admin.group.instructor:
                 label_catalogue: BillingBundle
                 items:

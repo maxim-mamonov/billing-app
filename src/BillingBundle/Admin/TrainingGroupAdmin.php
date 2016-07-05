@@ -82,4 +82,28 @@ class TrainingGroupAdmin extends AbstractAdmin
             ->add('archived')
             ->add('createdAt');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFilterParameters()
+    {
+        // build the values array
+        if ($this->hasRequest()) {
+            $reset = $this->request->query->get('filters') === 'reset';
+
+            if (!$reset) {
+                $this->datagridValues = array_merge(
+                    array(
+                        'archived' => array (
+                            'value' => 2
+                        ),
+                    ),
+                    $this->datagridValues
+                );
+            }
+        }
+
+        return parent::getFilterParameters();
+    }
 }
